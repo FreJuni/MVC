@@ -1,0 +1,14 @@
+<%- include('./includes/head.ejs')  %>
+    <section class="details-con">
+        <div class="details">
+            <img src="<%= post.image %>" alt="<%= post.title %>" />
+           <div class="info">
+            <h1><%= post.title %></h1>
+            <p><%= post.description %></p>
+            <button>
+                <a class="det-btn" href="/">Go back home</a>
+            </button>
+           </div>
+        </div>
+    </section>
+<%- include('./includes/foot.ejs')  %>

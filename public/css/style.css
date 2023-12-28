@@ -1,0 +1,116 @@
+
+.Home-con {
+    text-align: center;
+    max-width: 900px;
+    margin : 0 auto;
+}
+.Home-con > h2 {
+    color: cornflowerblue;
+    font-size: 2rem;
+}
+.Home-con > p {
+    font-size: 1.1rem;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+    background-color: cornflowerblue;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 5px;
+}
+.Post-con {
+    text-align: center;
+}
+.Post-con > h1 {
+    color: cornflowerblue;
+}
+.Post-con > p {
+    font-size: 1.1rem;
+    color: gray;
+}
+.info button{
+    margin-top: 1.5rem;
+}
+.add-post-con {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.con label {
+    display: block;
+}
+.con {
+    padding: 5px 0;
+}
+input {
+    width: 97%;
+    padding: 8px;
+    font-size: 1rem;
+}
+button {
+    background-color: cornflowerblue;
+    color: white;
+    padding: 4px 1rem;
+    border-radius: 5px;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+.post-con {
+    box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.75);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.post-title, .post-des {
+    text-align: start;
+}
+.post-title {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.details-con {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.add-title-con {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+textarea {
+    width: 97%;
+    padding: 8px;
+    height: 200px;
+    resize: none;
+}
+.post-btn {
+    width: 100%;
+}
+
+.details-con img {
+    width: 100%;
+    height: 400px;
+}
+
+.details {
+    margin-top: 4rem;
+    box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.75);
+}
+.info {
+    padding: 1rem;
+}
+.info h1 {
+    text-transform: uppercase;
+}
+.info p {
+    font-size: 1.1rem;
+    color: gray;
+    padding: 5px 0 0 0;
+}
+.info h1, .info p {
+    margin : 0
+}

@@ -1,0 +1,26 @@
+<%- include("./includes/head.ejs") %> 
+    <div class="Home-con">
+        <div class="add-title-con">
+            <h2>Helo from home pages.</h2>
+            <a href="/admin/create-post">Go To Admin</a>
+        </div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, soluta repellendus. Illum nobis magni voluptate, porro modi incidunt facilis est amet doloribus obcaecati, deleniti id soluta itaque quasi laboriosam reprehenderit! Quaerat, ducimus eos.</p>
+        <hr>
+        <h1>Posts</h1>
+        <% if(postArray.length < 1) { %>
+            <div>
+                <p>There was no post yet.</p>
+                <p>Want to create new post!!!</p>
+                <a href="/admin/create-post">Go to admin</a>
+            </div>
+        <% } %>
+        <% for(let post of postArray) { %> 
+        <div class="post-con">
+            <h4 class="post-title"><%= post.title %></h4>
+            <p class="post-des">
+                <a href="/post/<%= post.id %>">See more...</a>
+            </p>
+        </div>
+        <% } %>
+    </div>
+<%- include("./includes/foot.ejs") %> 
