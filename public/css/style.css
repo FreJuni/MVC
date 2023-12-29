@@ -114,3 +114,9 @@ textarea {
 .info h1, .info p {
     margin : 0
 }
+.btn-con form {
+    display: inline-block;
+}
+.btn-con > form {
+    padding: .6rem 0;
+}
