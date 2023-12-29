@@ -4,7 +4,10 @@ const postRouter = require("./Routers/Post");
 const { adminPost } = require("./Routers/Admin");
 const bodyParser = require("body-parser");
 
+const sequelize = require("./util/database");
+
 const app = express();
+
 app.set("view engine", "ejs");
 app.set("views", "Pages");
 
@@ -28,7 +31,12 @@ app.use("/admin", (req, res, next) => {
   console.log("admin middleware");
   next();
 });
-
 app.use(postRouter);
 
-app.listen(8080);
+sequelize
+  .sync()
+  .then((result) => {
+    console.log(result);
+    app.listen(8080);
+  })
+  .catch((err) => console.log(err));

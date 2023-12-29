@@ -1,18 +1,19 @@
-// Controllers               // MVC pattern
+// Controllers               // MVC pattern  Model Views Controller
 
-const posts = [];
+const Post = require("../Models/post.js");
 
 exports.createPost = (req, res) => {
   const { title, description, image } = req.body;
-  console.log(title, description);
-  posts.push({
-    id: Math.random(),
+  Post.create({
     title,
     description,
-    image,
-  });
-
-  res.redirect("/");
+    image_url: image,
+  })
+    .then((result) => {
+      console.log(result);
+      return res.redirect("/");
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.renderCreatePags = (req, res) => {
@@ -21,18 +22,23 @@ exports.renderCreatePags = (req, res) => {
 };
 
 exports.renderHomPages = (req, res) => {
-  // res.sendFile(path.join(__dirname, "../Pages/Home.html"));
-  res.render("Home", { title: "Helo World", postArray: posts }); // ejs rendering
+  Post.findAll()
+    .then((posts) => {
+      res.render("Home", { title: "Helo World", postArray: posts });
+    })
+    .catch((err) => console.log(err));
 };
 
-exports.renderPostPages = (req, res) => {
+exports.getPosts = (req, res) => {
   // res.sendFile(path.join(__dirname, "../Pages/Post.html"));
   res.render("Post", { title: "Post" }); // ejs rendering
 };
 
 exports.getPost = (req, res) => {
-  const id = Number(req.params.postID);
-  const post = posts.find((post) => post.id === id);
-
-  res.render("details", { title: "Post Details", post });
+  const id = req.params.postID;
+  Post.findByPk(id) // find by primary key
+    .then((post) => {
+      res.render("details", { title: "Detail Pages", post });
+    })
+    .catch((err) => console.log(err));
 };

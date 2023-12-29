@@ -9,6 +9,6 @@ router.get("/", postController.renderHomPages);
 
 router.get("/post/:postID", postController.getPost);
 
-router.get("/post", postController.renderPostPages);
+router.get("/post", postController.getPosts);
 
 module.exports = router;
