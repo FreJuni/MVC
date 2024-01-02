@@ -5,10 +5,12 @@ const Post = require("../Models/post.js");
 // render for createpost
 exports.createPost = (req, res) => {
   const { title, description, image } = req.body;
+  // console.log(req.user.id);
   Post.create({
     title,
     description,
     image_url: image,
+    userId: req.user.id,
   })
     .then((result) => {
       console.log(result);
