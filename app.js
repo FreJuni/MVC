@@ -3,6 +3,7 @@ const path = require("path");
 const postRouter = require("./Routers/Post");
 const { adminPost } = require("./Routers/Admin");
 const bodyParser = require("body-parser");
+const mongoConnector = require("./util/database");
 
 const app = express();
 app.set("view engine", "ejs");
@@ -30,5 +31,7 @@ app.use("/admin", (req, res, next) => {
 });
 
 app.use(postRouter);
+
+mongoConnector();
 
 app.listen(8080);
