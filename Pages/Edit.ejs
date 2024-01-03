@@ -1,0 +1,25 @@
+<%- include("./includes/head.ejs")  %>
+    <div class="add-post-con">
+        <div class="add-title-con">
+            <h1>Helo From Add Post.</h1>
+            <a href="/">Go back home</a>
+        </div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta in consequuntur dolore?</p>
+        <form action="/admin/edit" method="post">
+            <input type="text" name="id" value="<%=post._id %>" hidden>
+            <div class="con">
+                <label for="title">Title</label>
+                <input type="text" value="<%=post.title %>" name="title" required>
+            </div>
+            <div class="con">
+                <label for="image">Image URl</label>
+                <input type="text" value="<%=post.image %>" name="image" required>
+            </div>
+           <div class="con">
+                <label for="description">Description</label>
+                <textarea name="description" required id="description"><%=post.description %></textarea>
+           </div>
+            <button class="post-btn">Post</button>
+        </form>
+    </div>
+<%- include("./includes/foot.ejs") %>

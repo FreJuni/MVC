@@ -2,27 +2,36 @@
 
 const posts = [];
 
+const { Post } = require("../Models/post");
+const { Edit } = require("../Models/post");
+
 exports.createPost = (req, res) => {
   const { title, description, image } = req.body;
-  console.log(title, description);
-  posts.push({
-    id: Math.random(),
-    title,
-    description,
-    image,
-  });
-
-  res.redirect("/");
+  const post = new Post(title, description, image);
+  post
+    .create()
+    .then((result) => {
+      console.log(result);
+      res.redirect("/");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 exports.renderCreatePags = (req, res) => {
-  // res.sendFile(path.join(__dirname, "../Pages/AddPost.html")); // normal route rendering
   res.render("AddPost", { title: "Add Post" }); // ejs rendering
 };
 
 exports.renderHomPages = (req, res) => {
   // res.sendFile(path.join(__dirname, "../Pages/Home.html"));
-  res.render("Home", { title: "Helo World", postArray: posts }); // ejs rendering
+  Post.getPosts()
+    .then((posts) => {
+      res.render("Home", { title: "Helo World", postArray: posts }); // ejs rendering
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 exports.renderPostPages = (req, res) => {
@@ -31,8 +40,50 @@ exports.renderPostPages = (req, res) => {
 };
 
 exports.getPost = (req, res) => {
-  const id = Number(req.params.postID);
-  const post = posts.find((post) => post.id === id);
+  const postId = req.params.postID;
+  Post.getPost(postId)
+    .then((post) => {
+      res.render("details", { title: "Post Detail", post });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
-  res.render("details", { title: "Post Details", post });
+exports.getOldPost = (req, res) => {
+  const id = req.params.id;
+  Post.getOldPost(id)
+    .then((post) => {
+      console.log(post);
+      res.render("Edit", { title: "Edit Post", post });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+exports.editPost = (req, res) => {
+  const { title, description, image, id } = req.body;
+  const post = new Post(title, description, image, id);
+  post
+    .create()
+    .then((post) => {
+      console.log(post);
+      res.redirect("/");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+exports.deletePost = (req, res) => {
+  const id = req.params.id;
+  Post.deletePost(id)
+    .then((post) => {
+      console.log(post);
+      res.redirect("/");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };

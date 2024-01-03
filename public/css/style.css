@@ -114,3 +114,6 @@ textarea {
 .info h1, .info p {
     margin : 0
 }
+.detail form {
+    display: inline-block;
+}

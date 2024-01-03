@@ -8,6 +8,12 @@
             <button>
                 <a class="det-btn" href="/">Go back home</a>
             </button>
+            <div class="detail">
+                <form action="/admin/delete/<%=post._id %>" method="post">
+                    <button>Delete</button>
+                </form>
+                <a href="/admin/edit-post/<%=post._id %>">Edit</a>
+            </div>
            </div>
         </div>
     </section>
