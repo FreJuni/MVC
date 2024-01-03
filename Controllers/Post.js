@@ -1,15 +1,9 @@
 // Controllers               // MVC pattern
-
-const posts = [];
-
-const { Post } = require("../Models/post");
-const { Edit } = require("../Models/post");
+const Post = require("../Models/post");
 
 exports.createPost = (req, res) => {
   const { title, description, image } = req.body;
-  const post = new Post(title, description, image);
-  post
-    .create()
+  Post.create({ title, description, image }) // following es6
     .then((result) => {
       console.log(result);
       res.redirect("/");
@@ -24,8 +18,8 @@ exports.renderCreatePags = (req, res) => {
 };
 
 exports.renderHomPages = (req, res) => {
-  // res.sendFile(path.join(__dirname, "../Pages/Home.html"));
-  Post.getPosts()
+  Post.find()
+    .sort({ title: -1 })
     .then((posts) => {
       res.render("Home", { title: "Helo World", postArray: posts }); // ejs rendering
     })
@@ -41,7 +35,7 @@ exports.renderPostPages = (req, res) => {
 
 exports.getPost = (req, res) => {
   const postId = req.params.postID;
-  Post.getPost(postId)
+  Post.findById(postId)
     .then((post) => {
       res.render("details", { title: "Post Detail", post });
     })
@@ -52,7 +46,7 @@ exports.getPost = (req, res) => {
 
 exports.getOldPost = (req, res) => {
   const id = req.params.id;
-  Post.getOldPost(id)
+  Post.findById(id)
     .then((post) => {
       console.log(post);
       res.render("Edit", { title: "Edit Post", post });
@@ -64,11 +58,14 @@ exports.getOldPost = (req, res) => {
 
 exports.editPost = (req, res) => {
   const { title, description, image, id } = req.body;
-  const post = new Post(title, description, image, id);
-  post
-    .create()
+  Post.findById(id)
     .then((post) => {
-      console.log(post);
+      post.title = title;
+      post.description = description;
+      post.image = image;
+      return post.save();
+    })
+    .then((result) => {
       res.redirect("/");
     })
     .catch((err) => {
@@ -78,7 +75,7 @@ exports.editPost = (req, res) => {
 
 exports.deletePost = (req, res) => {
   const id = req.params.id;
-  Post.deletePost(id)
+  Post.findByIdAndDelete(id)
     .then((post) => {
       console.log(post);
       res.redirect("/");
