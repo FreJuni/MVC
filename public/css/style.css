@@ -117,3 +117,6 @@ textarea {
 .detail form {
     display: inline-block;
 }
+.post-con div h4, .post-con div p {
+    margin: 0;
+}

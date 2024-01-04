@@ -16,7 +16,10 @@
         <% } %>
         <% for(let post of postArray) { %> 
         <div class="post-con">
-            <h4 class="post-title"><%= post.title %></h4>
+           <div>
+             <h4 class="post-title"><%= post.title %></h4>
+             <p>Post by @ <%= post.userId.username %></p>
+           </div>
             <p class="post-des">
                 <a href="/post/<%= post._id %>">See more...</a>
             </p>

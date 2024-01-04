@@ -16,6 +16,11 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User", // this mean can communicate with User collection
+    required: true,
+  },
 });
 
 module.exports = model("Post", postSchema);

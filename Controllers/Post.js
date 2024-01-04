@@ -3,7 +3,7 @@ const Post = require("../Models/post");
 
 exports.createPost = (req, res) => {
   const { title, description, image } = req.body;
-  Post.create({ title, description, image }) // following es6
+  Post.create({ title, description, image, userId: req.user }) // following es6
     .then((result) => {
       console.log(result);
       res.redirect("/");
@@ -19,9 +19,12 @@ exports.renderCreatePags = (req, res) => {
 
 exports.renderHomPages = (req, res) => {
   Post.find()
+    .select("title")
+    .populate("userId", "username") // this is communicate with user
     .sort({ title: -1 })
     .then((posts) => {
-      res.render("Home", { title: "Helo World", postArray: posts }); // ejs rendering
+      console.log(posts);
+      res.render("Home", { title: "Home Pages", postArray: posts }); // ejs rendering
     })
     .catch((err) => {
       console.log(err);
