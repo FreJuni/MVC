@@ -1,8 +1,15 @@
 <%- include("./includes/head.ejs") %> 
     <div class="Home-con">
         <div class="add-title-con">
+            <div>
             <h2>Helo from home pages.</h2>
-            <a href="/admin/create-post">Go To Admin</a>
+            <% if(!isLogin) { %>
+            <a href="/login" class="create">Create new account</a>
+            <% } %>
+            </div>
+            <% if(isLogin) { %>
+            <a href="/admin/create-post">Create a new post</a>
+            <% } %>
         </div>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, soluta repellendus. Illum nobis magni voluptate, porro modi incidunt facilis est amet doloribus obcaecati, deleniti id soluta itaque quasi laboriosam reprehenderit! Quaerat, ducimus eos.</p>
         <hr>

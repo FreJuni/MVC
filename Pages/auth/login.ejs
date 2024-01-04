@@ -1,0 +1,19 @@
+<%- include("../includes/head.ejs")  %>
+    <div class="add-post-con">
+        <div class="add-title-con">
+            <h1>Add a new account here.</h1>
+            <a href="/">Go back home</a>
+        </div>
+        <form action="/login" method="post">
+            <div class="con">
+                <label for="title">Email</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="con">
+                <label for="password">Enter passwrd</label>
+                <input type="password" name="password" required>
+            </div>
+            <button class="post-btn">Create Account</button>
+        </form>
+    </div>
+<%- include("../includes/foot.ejs") %>

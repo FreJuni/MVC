@@ -4,6 +4,7 @@ const postRouter = require("./Routers/Post");
 const { adminPost } = require("./Routers/Admin");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const authRouter = require("./Routers/Auth");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -19,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // middleware for user //
 app.use((req, res, next) => {
-  User.findById("6596369144e220b4cb7df956").then((user) => {
+  User.findById("6596dbe098e14b3765aa7398").then((user) => {
     //custom
     req.user = user;
     next();
@@ -30,6 +31,8 @@ app.use("/admin", adminPost);
 
 app.use(postRouter);
 
+app.use(authRouter);
+
 mongoose // using mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
@@ -37,11 +40,11 @@ mongoose // using mongoose
     console.log("connected to mongodb");
     return User.findOne().then((user) => {
       if (!user) {
-        User.create({
-          username: "Bone",
-          email: "code@gmail.com",
-          password: "123456",
-        });
+        // User.create({
+        //   username: "Bonemyat",
+        //   email: "code@gmail.com",
+        //   password: "123456",
+        // });
       }
       return user;
     });

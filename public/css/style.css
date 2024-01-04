@@ -19,9 +19,14 @@ a {
     padding: 4px 10px;
     border-radius: 5px;
 }
+.create {
+    display: flex;
+    justify-content: center;
+}
 .Post-con {
     text-align: center;
 }
+
 .Post-con > h1 {
     color: cornflowerblue;
 }
