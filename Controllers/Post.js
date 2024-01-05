@@ -19,8 +19,7 @@ exports.renderCreatePags = (req, res) => {
 
 exports.renderHomPages = (req, res) => {
   // isLogIn = true    we use split to cut out what we need. split return array so we use index to take off what we need and then we transfer to boolean type trim method cut  unesseary things
-  const cookie = req.get("Cookie").split("=")[1].trim() === "true";
-  console.log(cookie);
+  // const cookie = req.get("Cookie").split("=")[1].trim() === "true";
   Post.find()
     .select("title")
     .populate("userId", "username") // this is communicate with user
@@ -30,7 +29,7 @@ exports.renderHomPages = (req, res) => {
       res.render("Home", {
         title: "Home Pages",
         postArray: posts,
-        isLogin: cookie,
+        isLogin: req.session.isLogin ? true : false,
       }); // ejs rendering
     })
     .catch((err) => {
